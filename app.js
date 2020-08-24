@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const request = require('request').defaults({
 	jar: true,
 	encoding: 'binary'
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 const urlTokens = 'https://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado';
 const urlInfo = 'https://aplicaciones007.jne.gob.pe/srop_publico/Consulta/api/AfiliadoApi/GetNombresCiudadano';
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
