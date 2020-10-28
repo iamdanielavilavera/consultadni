@@ -44,8 +44,16 @@ app.post('/', (req, res) => {
 					}
 				};
 				request(options, (err, response, body) => {
-					if (!err && response.statusCode == 200) {
-						res.json(body);
+					if (!err && response.statusCode == 200 && body.success) {
+						var name = body.data.split('|').map(function (splited) {return splited.trim();}).join(' ').trim();
+						if(name.length > 0){
+							res.json({name : name});
+						}else{
+							res.status(400).json({
+								error: 'DNI no encontrado'
+							});
+						}
+						
 					} else {
 						res.status(500).json({
 							error: 'Error al buscar el DNI'
