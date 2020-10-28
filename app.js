@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
 	if (typeof req.body.dni === 'undefined' || req.body.dni === null) {
 		res.status(500).json({
-			error: 'No ha enviado el DNI a buscar'
+			message: 'No ha enviado el DNI a buscar'
 		});
 	} else {
 		request(urlTokens, (err, response, body) => {
@@ -50,19 +50,19 @@ app.post('/', (req, res) => {
 							res.json({name : name});
 						}else{
 							res.status(400).json({
-								error: 'DNI no encontrado'
+								message: 'DNI no encontrado'
 							});
 						}
 						
 					} else {
 						res.status(500).json({
-							error: 'Error al buscar el DNI'
+							message: 'Error al buscar el DNI'
 						});
 					}
 				});
 			} else {
 				res.status(500).json({
-					error: 'Error al buscar el DNI'
+					message: 'Error al buscar el DNI'
 				});
 			}
 		});
