@@ -26,9 +26,10 @@ app.post('/', (req, res) => {
 	} else {
 		request(urlTokens, (err, response, body) => {
 			if (!err && response.statusCode == 200) {
+				
 				const $ = cheerio.load(body);
-				let pTokenForm = $("script").eq(3).html() || '';
-				let pTokenCookie = $("script").eq(4).html() || '';
+				let pTokenForm = $("script").eq(4).html() || '';
+				let pTokenCookie = $("script").eq(5).html() || '';
 				pTokenForm = pTokenForm.split("'");
 				pTokenForm = pTokenForm.length > 2 ? pTokenForm[1] : '';
 				pTokenCookie = pTokenCookie.split("'");
@@ -44,6 +45,9 @@ app.post('/', (req, res) => {
 					}
 				};
 				request(options, (err, response, body) => {
+					console.log(response);
+					console.log('bodyyyyyyyyyyyy');
+					console.log(body);
 					if (!err && response.statusCode == 200 && body.success) {
 						var name = body.data.split('|').map(function (splited) {return splited.trim();}).join(' ').trim();
 						if(name.length > 0){
