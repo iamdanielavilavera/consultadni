@@ -45,9 +45,6 @@ app.post('/', (req, res) => {
 					}
 				};
 				request(options, (err, response, body) => {
-					console.log(response);
-					console.log('bodyyyyyyyyyyyy');
-					console.log(body);
 					if (!err && response.statusCode == 200 && body.success) {
 						var name = body.data.split('|').map(function (splited) {return splited.trim();}).join(' ').trim();
 						if(name.length > 0){
